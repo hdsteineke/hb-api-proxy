@@ -2,19 +2,21 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Spinner from './Spinner';
 import { getYelpResults } from './services/fetch-utils';
+import BusinessList from './BusinessList';
 
 export default function YelpSearch() {
-  const [yelpData, setYelpData] = useState();
-  const [yelpQuery, setYelpQuery] = useState();
+  const [yelpData, setYelpData] = useState([]);
+  const [yelpQuery, setYelpQuery] = useState('portland');
   const [isLoading, setIsLoading] = useState(false);
 
     // you'll need to track your yelp search results, the loading state, and a form field for location with a default value.
 
   async function load() {
     setIsLoading(true);
-    console.log(yelpQuery, 'yelpQuery');
+    // console.log(yelpQuery, 'yelpQuery');
     const data = await getYelpResults(yelpQuery);
-    console.log('data', data);
+    setYelpData(data.data.businesses);
+    console.log('data', data.data.businesses);
     setIsLoading(false);
 
     
@@ -42,11 +44,14 @@ export default function YelpSearch() {
         Search for a business near you:
         {/* add inputs/labels for city name, state, and country, using all the things we need with react forms. Don't forget to use the value property to sync these up with the default values in react state */}
         <input onChange={e => setYelpQuery(e.target.value)}>
-          
+
         </input>
         <button>Search yelp</button>
       </form>
       {/* Make a BusinessesList component to import and use here. Use a ternery to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
+      { isLoading
+        ? <Spinner /> 
+        : <BusinessList businesses={yelpData}/>}
     </section>
   );
 }
