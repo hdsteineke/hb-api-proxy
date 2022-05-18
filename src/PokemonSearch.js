@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { getPokemon } from './services/fetch-utils';
+import PokemonList from './PokemonList';
 
 export default function PokemonSearch() {
   const [pokemonData, setPokemonData] = useState([]);
@@ -46,6 +47,7 @@ export default function PokemonSearch() {
         <button>Get pokemon</button>
       </form>
       {/* Make a PokemonList component to import and use here. Use a ternery to display a loading spinner (make a <Spinner /> component for this) if the data is still loading. */}
+      <PokemonList pokemon={pokemonData} />
     </section>
   );
 
