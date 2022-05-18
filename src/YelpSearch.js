@@ -1,13 +1,33 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Spinner from './Spinner';
-import getYelpResults
+import { getYelpResults } from './services/fetch-utils';
 
 export default function YelpSearch() {
+  const [yelpData, setYelpData] = useState();
+  const [yelpQuery, setYelpQuery] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+
     // you'll need to track your yelp search results, the loading state, and a form field for location with a default value.
+
+  async function load() {
+    setIsLoading(true);
+    console.log(yelpQuery, 'yelpQuery');
+    const data = await getYelpResults(yelpQuery);
+    console.log('data', data);
+    return data;
+
+    
+  }
+
+  useEffect(() => {
+    load();
+
+  }, []);
 
   async function handleYelpSubmit(e) {
     e.preventDefault();
+    load();
   
     // set the loading state to true
     // use fetch to make a request to your netlify yelp function. Be sure to pass the search query as a query param in the URL

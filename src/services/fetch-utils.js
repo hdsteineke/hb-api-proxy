@@ -8,7 +8,8 @@ export async function getPokemon(pokemonQuery) {
 
 export async function getYelpResults(yelpQuery) {
   const rawResponse = await fetch(`/.netlify/functions/yelp?yelpQuery=${yelpQuery}`);
-  const data = await rawResponse.Response.json();
+  const data = await rawResponse.json();
+  console.log('YelpFetchData', data);
 
   return data;
 }
