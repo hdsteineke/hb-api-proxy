@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
+import Spinner from './Spinner';
+import getYelpResults
 
 export default function YelpSearch() {
     // you'll need to track your yelp search results, the loading state, and a form field for location with a default value.
