@@ -25,7 +25,7 @@ export default function YelpSearch() {
   useEffect(() => {
     load();
 
-  }, []);
+  }, []); //eslint-disable-line
 
   async function handleYelpSubmit(e) {
     e.preventDefault();
