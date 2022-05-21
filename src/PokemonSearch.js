@@ -22,7 +22,7 @@ export default function PokemonSearch() {
   useEffect(() => {
     load();
 
-  }, []);
+  }, []); //eslint-disable-line
   
   async function handlePokemonSubmit(e) {
     e.preventDefault();
