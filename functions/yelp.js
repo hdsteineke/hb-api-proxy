@@ -8,7 +8,7 @@ const headers = {
   // 'Authorization': `Bearer ${process.env.YELP_KEY}`
 };
 
-
+//testing
 exports.handler = async (event, context) => {
   try {
     // grab the city, state, and country from the request's query parameters
